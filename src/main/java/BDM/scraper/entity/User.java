@@ -1,10 +1,10 @@
 package BDM.scraper.entity;
+import BDM.scraper.entity.type.AuthProviderType;
 import BDM.scraper.entity.type.RoleType;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
-
 @Entity
 @Getter
 @Setter
@@ -21,7 +21,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String password;
 
     @Column(nullable = false)
@@ -39,4 +39,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Set<RoleType> roles = new HashSet<>();
+    @Column(unique = true)
+    private String providerId;
+
+    @Enumerated(EnumType.STRING)
+    private AuthProviderType providerType;
 }
